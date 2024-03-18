@@ -87,7 +87,8 @@ original_string = "aabcccccaaa"
 compressed_string = compress_string(original_string)
 print("Compressed string:", compressed_string)
 
-# Write a function to check if one string is a rotation of another. For example, "abcd" is a rotation of "cdab" but not of "bcda".
+
+# Write a function to check if one string is a rotation of another. For example, "abcd" is a rotation of "cdab" but not of "bcda". # noqa
 
 
 def is_rotation(s1, s2):
@@ -147,7 +148,7 @@ string = "abcd"
 target = 3
 rotation(string, target)
 
-a = [10,5,4,5,8,4,7,6]
+a = [10, 5, 4, 5, 8, 4, 7, 6]
 max = float("-inf")
 second_max = float("-inf")
 third_max = float("-inf")
@@ -168,4 +169,28 @@ for i in a:
 print(max, second_max, third_max, fourth_max)
 
 
-    
+pattern = "abba"
+s = "dog cat cat dog"
+
+def checkwordpattern(pattern, s):
+    word = s.split()
+
+    if len(pattern) != len(word):
+        return False
+    pattern_map = {}
+    word_map = {}
+    for char, word in zip(pattern, word):
+        if char not in pattern_map.keys() and word not in word_map.keys():
+            pattern_map[char] = word
+            word_map[word] = char
+        elif pattern_map.get(char) != word or word_map.get(word) != char:
+            return False
+    return pattern_map, word_map, True
+
+# Test the function
+pattern = "abbab"
+s = "dog cat cat dog cat"
+print(checkwordpattern(pattern, s))  # Output: True
+
+
+
