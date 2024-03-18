@@ -45,3 +45,104 @@ def count_vowels(string):
 
 
 print(count_vowels("Hello World!"))
+
+#  Write a function to check if two strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. # noqa
+# "listen" - "silent"
+# "triangle" - "integral"
+# "astronomer" - "moonstarer"
+# "schoolmaster" - "the classroom"
+# "debit card" - "bad credit"
+# "funeral" - "real fun"
+# "astronomers" - "moon starers"
+# "dormitory" - "dirty room"
+# "eleven plus two" - "twelve plus one"
+# "conversation" - "voices rant on"
+
+
+def check_anagrams(str1, str2):
+    """Check if two strings are anagram of each other."""
+    return sorted(str1) == sorted(str2)
+
+
+print(check_anagrams("listen", "silent"))
+print(check_anagrams("triangle", "new"))
+
+# Write a function to perform basic string compression using the counts of repeated characters. For example, the string "aabcccccaaa" would become "a2b1c5a3". If the compressed string would not become smaller than the original string, your function should return the original string. # noqa
+
+def compress_string(s):
+    compressed = ""
+    count = 1
+
+    for i in range(len(s)):
+        if i + 1 < len(s) and s[i] == s[i + 1]:
+            count += 1
+        else:
+            compressed += s[i] + str(count)
+            count = 1
+
+    return compressed if len(compressed) < len(s) else s
+
+# Example usage:
+original_string = "aabcccccaaa"
+compressed_string = compress_string(original_string)
+print("Compressed string:", compressed_string)
+
+# Write a function to check if one string is a rotation of another. For example, "abcd" is a rotation of "cdab" but not of "bcda".
+
+
+def is_rotation(s1, s2):
+    """Check if two strings are rotations of each other."""
+    rotation = s1*2
+    if s2 in rotation:
+        return True
+    else:
+        return False
+
+
+print(is_rotation("abcd", "cdab"))
+print(is_rotation("abcd", "bcda"))
+
+
+def longest_substring_without_repeating(s):
+    # Dictionary to store the index of the last occurrence of each character
+    last_seen = {}
+    start = 0
+    max_length = 0
+
+    for end, char in enumerate(s):
+        # If the character is already in the dictionary and its index is after the start of the current substring # noqa
+        if char in last_seen and last_seen[char] >= start:
+            start = last_seen[char] + 1
+
+        # Update the last seen index of the character
+        last_seen[char] = end
+
+        # Calculate the length of the current substring
+        current_length = end - start + 1
+
+        # Update the maximum length if needed
+        max_length = max(max_length, current_length)
+
+    return max_length
+
+# Example usage:
+
+
+input_str = "abcabcbb"
+print("Length of the longest substring without repeating characters:", longest_substring_without_repeating(input_str)) # noqa
+
+
+def rotation(a, b):
+    c = ""
+    if b < len(a):
+        c += a[:b]
+    elif b > len(a):
+        remainer = b % len(a)
+        repetation = b // len(a) 
+        c += a * repetation + a[:remainer]
+    print(c)
+
+
+string = "abcd"
+target = 3
+rotation(string, target)
