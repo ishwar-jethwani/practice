@@ -146,3 +146,26 @@ def rotation(a, b):
 string = "abcd"
 target = 3
 rotation(string, target)
+
+a = [10,5,4,5,8,4,7,6]
+max = float("-inf")
+second_max = float("-inf")
+third_max = float("-inf")
+fourth_max = float("-inf")
+for i in a:
+    if i > max:
+        fourth_max = third_max
+        third_max = second_max
+        second_max = max
+        max = i
+    elif second_max != max and i > second_max:
+        second_max = i
+    elif third_max != second_max and i > third_max:
+        third_max = i
+    elif fourth_max != third_max and i > fourth_max:
+        fourth_max = i
+
+print(max, second_max, third_max, fourth_max)
+
+
+    
